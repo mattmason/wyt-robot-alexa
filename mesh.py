@@ -20,7 +20,7 @@ class mesh():
     def send(self, cmd):
         logger.info(cmd)
         print(cmd)
-        head = len(cmd).to_bytes(4,byteorder="big")
+        head = struct.pack(">I", len(cmd))
         self.socket.send(head + cmd.encode("utf-8"))
 
     def broadcast(self, message):
